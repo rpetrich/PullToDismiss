@@ -1,0 +1,9 @@
+Package: com.rpetrich.pulltodismiss
+Priority: optional
+Section: System
+Architecture: iphoneos-arm
+Version: 0.1
+Description: Dismiss keyboard by scrolling
+Name: Pull To Dismiss
+Depends: firmware (>= 3.2), mobilesubstrate
+Author: Ryan Petrich <rpetrich+pulltodismiss@gmail.com>
