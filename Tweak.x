@@ -38,6 +38,14 @@ static CGFloat offset;
 	%orig;
 	if ([UIKeyboardImpl activeInstance] && (kCFCoreFoundationVersionNumber < 675.0 || ![self isKindOfClass:%c(CKTranscriptTableView)])) {
 		UIPeripheralHostView *view = CHIvar([UIPeripheralHost sharedInstance], _hostView, UIPeripheralHostView *);
+		UIView *superview = self.superview;
+		while (superview) {
+			// Don't allow scrollviews inside the peripheral host to trigger dismissal
+			// Happens when choosing a date in Reminders or using the Emoji keyboard
+			if (superview == view)
+				return;
+			superview = superview.superview;
+		}
 		CGRect beforeFrame = view.frame;
 		switch (recognizer.state) {
 			case UIGestureRecognizerStateEnded: {
